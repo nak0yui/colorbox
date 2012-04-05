@@ -70,7 +70,8 @@
 		left: false,
 		right: false,
 		fixed: false,
-		data: undefined
+		data: undefined,
+		target: document.body
 	},
 	
 	// Abstracting the HTML and event identifiers for easy rebranding
@@ -391,10 +392,12 @@
 
 	// Colorbox's markup needs to be added to the DOM prior to being called
 	// so that the browser will go ahead and load the CSS background images.
-	function appendHTML() {
+	function appendHTML(options) {
 		if (!$box && document.body) {
 			init = false;
-			$window = $(window);
+
+			var target = options.target || window;
+			$window = $(target);
 			$box = $tag(div).attr({
 				id: colorbox,
 				'class': $.support.opacity === false ? prefix + 'IE' : '', // class for optional IE8 & lower targeted CSS.
@@ -436,7 +439,8 @@
 			
 			$groupControls = $next.add($prev).add($current).add($slideshow);
 
-			$(document.body).append($overlay, $box.append($wrap, $loadingBay));
+			target = options.target || document.body;
+			$(target).append($overlay, $box.append($wrap, $loadingBay));
 		}
 	}
 
@@ -524,7 +528,7 @@
 		
 		options = options || {};
 		
-		appendHTML();
+		appendHTML(options);
 
 		if (addBindings()) {
 			if ($.isFunction($this)) { // assume a call to $.colorbox
@@ -1019,6 +1023,11 @@
 	// returns a jQuery object.
 	publicMethod.element = function () {
 		return $(element);
+	};
+
+	publicMethod.setTarget = function (target) {
+		publicMethod.remove();
+		return appendHTML({target:target});
 	};
 
 	publicMethod.settings = defaults;
