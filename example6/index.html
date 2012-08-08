@@ -7,11 +7,13 @@
 			body{font:12px/1.2 Verdana, sans-serif; padding:0 10px;}
 			a:link, a:visited{text-decoration:none; color:#416CE5; border-bottom:1px solid #416CE5;}
 			h2{font-size:13px; margin:15px 0 0 0;}
-			#colorboxView{width:1024px; height:690px; border:1px solid #416CE5;}
+			#container{width: 1024px;}
+			#menu{float: left; width: 124px;}
+			#colorboxView{float: right; width:898px; height:690px; border:1px solid black;}
 		</style>
 		<link rel="stylesheet" href="colorbox.css" />
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-		<script src="../colorbox/jquery.colorbox.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script src="../jquery.colorbox.js"></script>
 		<script>
 			$(document).ready(function(){
 				$.colorbox.setTarget('div#colorboxView');
@@ -44,6 +46,8 @@
 	<body>
 		<h1>ColorBox Demonstration</h1>
 		
+		<div id="container">
+		<div id="menu">
 		<h2>Elastic Transition</h2>
 		<p><a class="group1" href="../content/ohoopee1.jpg" title="Me and my grandfather on the Ohoopee.">Grouped Photo 1</a></p>
 		<p><a class="group1" href="../content/ohoopee2.jpg" title="On the Ohoopee as a child">Grouped Photo 2</a></p>
@@ -86,7 +90,10 @@
 			<a class="ajax" href="../content/flash.html">Click here to load new content</a></p>
 			</div>
 		</div>
+		</div>
     <div id="colorboxView">
     </div>
+		</div>
+
 	</body>
 </html>
